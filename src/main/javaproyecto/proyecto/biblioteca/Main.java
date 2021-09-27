@@ -31,7 +31,60 @@ public class Main extends LibroDatos {
 //		LibroDatos objetoLibro=new LibroDatos();
          LibroDatos[] nuevoLibro=new LibroDatos[20];
 		int k=0;
-		
+		List<LibroDatos> libros = new ArrayList<LibroDatos>();
+		LibroDatos libro1 = new LibroDatos();
+     	libro1.setCodigo("11111");
+		libro1.setNombre("Luces de bohemia");
+		libro1.setAutor("Ramón del Valle-Inclán");
+		libro1.setAnioDePublicacion("1998");
+		libro1.setEstado("Disponible");
+		libro1.setFechaEntrega("28/09/2021");
+	
+		LibroDatos libro2 = new LibroDatos();
+		libro2.setCodigo("22222");
+		libro2.setNombre("Crimen y castigo");
+		libro2.setAutor("Fedor Dostoievsk");
+		libro2.setAnioDePublicacion("1950");
+		libro2.setEstado("Reservado");
+		libro2.setFechaEntrega("12/10/2021");
+	
+		LibroDatos libro3 = new LibroDatos();
+		libro3.setCodigo("33333");
+		libro3.setNombre("100 años de Soledad");
+		libro3.setAutor("Gabriel García Márquez");
+		libro3.setAnioDePublicacion("1976");
+		libro3.setEstado("Prestado");
+		libro3.setFechaEntrega("11/10/2021");
+	
+		LibroDatos libro4 = new LibroDatos();
+		libro4.setCodigo("44444");
+		libro4.setNombre("Programacion I");
+		libro4.setAutor("Adam Bien");
+		libro4.setAnioDePublicacion("1674");
+		libro4.setEstado("Disponible");
+		libro4.setFechaEntrega("10/10/2021");
+	
+		LibroDatos libro5 = new LibroDatos();
+		libro5.setCodigo("55555");
+		libro5.setNombre("Programacion II");
+		libro5.setAutor("Adam Bien");
+		libro5.setAnioDePublicacion("1679");
+		libro5.setEstado("Disponible");
+		libro5.setFechaEntrega("10/11/2021");
+	
+		LibroDatos libro6 = new LibroDatos();
+		libro6.setCodigo("66666");
+		libro6.setNombre("Algebra Lineal");
+		libro6.setAutor("Lara y arroba");
+		libro6.setAnioDePublicacion("1675");
+		libro6.setEstado("Reservado");
+		libro6.setFechaEntrega("23/11/2021");
+		libros.add(libro1);
+		libros.add(libro2);
+		libros.add(libro3);
+		libros.add(libro4);
+		libros.add(libro5);
+		libros.add(libro6);
 		Date date=new Date();
 		
 		LocalDate diaHoy=LocalDate.now();
@@ -92,14 +145,14 @@ public class Main extends LibroDatos {
 						cedula = lector.nextLine();
 						
 						for (int i = 0; i < nuevoLibro.length; i++) {
-							LibroDatos libros = nuevoLibro[i];
-							boolean encontrar = libros.getCodigo().contains(codigo);
-							boolean encontrar11 = libros.getCedula().contains(cedula);
+							LibroDatos libros1 = nuevoLibro[i];
+							boolean encontrar = libros1.getCodigo().contains(codigo);
+							boolean encontrar11 = libros1.getCedula().contains(cedula);
                 
 							
 							if (encontrar == true  || encontrar11==false) {
-								if (libros.getEstado().equals("Disponible")) {
-									libros.setEstado("reservado");
+								if (libros1.getEstado().equals("Disponible")) {
+									libros1.setEstado("reservado");
 									System.out.println(nuevoLibro[i]);
 									
 									nuevoLibro[i].setCedula(cedula);
@@ -111,7 +164,7 @@ public class Main extends LibroDatos {
 								
 							}
 							
-							nuevoLibro[i]=libros;
+							nuevoLibro[i]=libros1;
 						}
 					}
 				} while (opcion.equals("c"));
@@ -124,6 +177,7 @@ public class Main extends LibroDatos {
 					System.out.println("*********************************");
 					System.out.println("Elija una opcion");
 					opcion = lector.nextLine();
+					LibroDatos objetoLibro=new LibroDatos();
 
 					if (opcion.equals("a")) {
 						
@@ -144,7 +198,6 @@ public class Main extends LibroDatos {
 						System.out.println("Precio del libro");
 						String precioL = lector.nextLine();
 	
-						LibroDatos objetoLibro=new LibroDatos();
 						objetoLibro.setCodigo(codigoL);
 						objetoLibro.setNombre(nombreL);
 						objetoLibro.setAutor(autorL);
@@ -194,29 +247,31 @@ public class Main extends LibroDatos {
 						String codi = lector.nextLine();
 						
 						for (int i = 0; i < nuevoLibro.length; i++) {
-							LibroDatos libros = nuevoLibro[i];
-							boolean encontrar = libros.getCodigo().contains(codi);
+							LibroDatos libros1 = nuevoLibro[i];
+							boolean encontrar = libros1.getCodigo().contains(codi);
 
 							if (encontrar == true) {
 								
 								
-								if (libros.getEstado().equals("reservado")) {
+								if (libros1.getEstado().equals("reservado")) {
 									
 									System.out.println(nuevoLibro[i]);
-
+									
+									
+									System.out.println("Elija una opcion");
 									System.out.println("1.-Prestar");
 									System.out.println("2.-No prestar");
 								int escoger = lector.nextInt();
 								if(escoger==1) {
-									libros.getEstado().equals("reservado");
-									libros.setEstado("prestado");
+									libros1.getEstado().equals("reservado");
+									libros1.setEstado("prestado");
 									
 									 diaHoy=LocalDate.now();
 									 diaHoy=diaHoy.plusDays(5);
 									 System.out.println("Fecha de Entrega:"+nuevoLibro[i].getFechaDeEntrega());
 									
 								}else if(escoger==2) {
-									libros.setEstado("Disponible");
+									libros1.setEstado("Disponible");
 									
 								}
 									System.out.println("El libro ha sido correctamente reservado debe pasarlo "
@@ -224,7 +279,7 @@ public class Main extends LibroDatos {
 
 								}
 							}
-							nuevoLibro[i]=libros;
+							nuevoLibro[i]=libros1;
 						}
 							
 
@@ -236,14 +291,14 @@ public class Main extends LibroDatos {
 			
 							
 							for (int i = 0; i < nuevoLibro.length; i++) {
-								LibroDatos libros = nuevoLibro[i];
-								boolean encontrar = libros.getCodigo().contains(codigLibr);
-								boolean encontrar2 = libros.getCedula().contains(cedulaEstudiante);
+								LibroDatos libros1 = nuevoLibro[i];
+								boolean encontrar = libros1.getCodigo().contains(codigLibr);
+								boolean encontrar2 = libros1.getCedula().contains(cedulaEstudiante);
 
 								if (encontrar == true && encontrar2==true ) {
 									
 									
-									if (libros.getEstado().equals("prestado")) {
+									if (libros1.getEstado().equals("prestado")) {
 										
 										System.out.println(nuevoLibro[i]);
 
@@ -263,7 +318,7 @@ public class Main extends LibroDatos {
 										
 									}
 								}
-								nuevoLibro[i]=libros;
+								nuevoLibro[i]=libros1;
 							} 
 					}	 
 			}
